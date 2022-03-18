@@ -27,12 +27,7 @@ def create_table():
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
-
-
-@app.route("/<name>")
-def hello(name):
-    return f"Hello, {escape(name)}!"
+    return redirect('/tracker')
 
 
 @app.route('/add', methods=['GET', 'POST'])
