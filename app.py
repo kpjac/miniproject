@@ -14,7 +14,7 @@ app.config.update(
     TESTING=True,
     SECRET_KEY='192b9bdd22ab9e34dsai43sdf9834fdsjk349fd91bbf5dc987d54727823bcbf'
 )
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coins.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://yqzhacpyrwvqep:af7d32705ce5288382f403e4f41411a2d1e0d81018bad511a05c21105af20353@ec2-18-210-191-5.compute-1.amazonaws.com:5432/d3q67rb49kjoie'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
