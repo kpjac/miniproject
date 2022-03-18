@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row d-flex align-items-center" style="height: 100vh">
+
+  <form action='' method="POST">
+    <p>Coin Symbol <input type="text" name="coin_symbol" /></p>
+    <p>Amount <input type="number" step="0.000000000001" name="amount" /></p>
+    <span>{{error}}</span>
+    <p><button type="submit" id="addBtn">Submit</button></p>
+  </form>
+
+</div>
+
+{% endblock %}

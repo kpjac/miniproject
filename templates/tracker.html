@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row d-flex align-items-center" style="height: 95vh">
+    <div class="col">
+        {% if coins %}
+        <table class="table table-dark table-hover caption-top">
+            <caption class="h1 text-center">CoinTracker</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Coin</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Holdings</th>
+                    <th scope="col">Price (USD)</th>
+                    <th scope="col">24H</th>
+                    <th scope="col">7D</th>
+                    <th scope="col">90D</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coin in coins %}
+                <tr>
+                    <th scope="row">{{coin.coin_symbol}}</th>
+                    <td>{{coin.coin_name}}</td>
+                    <td>{{coin.amount}} <a href="/update/{{coin.id}}"><i class="bi bi-pencil-fill"></i></a> <a href="/delete/{{coin.id}}"><i class="bi bi-trash-fill"></i></a></td>
+                    <td>{{"${:,.2f}".format(coin.latest_usd)}}</td>
+                    <td class="percentChange">{{"{:+.2%}".format(coin.change_24h / 100)}}</td>
+                    <td class="percentChange">{{"{:+.2%}".format(coin.change_7d / 100)}}</td>
+                    <td class="percentChange">{{"{:+.2%}".format(coin.change_90d / 100)}}</td>
+                    <td>{{"${:,.2f}".format(coin.value)}}</td>
+                </tr>
+                {% endfor %}
+            <tfoot>
+                <tr>
+                    <th scope="row">Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{"${:,.2f}".format(total_value)}}</td>
+            </tfoot>
+            </tr>
+            </tbody>
+
+        </table>
+        {% else %}
+        <h3>Add a coin to get started</h3>
+        {% endif %}
+        <div class="d-flex align-items-bottom justify-content-around">
+            <div class="p-2">
+                <a class="btn btn-light" href="/add">Add Coin</a>
+            </div>
+            {% if coins %}
+            <div class="p-2">
+                <form action="/refresh" method="post">
+                    <input type="submit" class="btn btn-light" value="Refresh Prices Now" />
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

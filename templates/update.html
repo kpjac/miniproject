@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row d-flex align-items-center" style="height: 100vh">
+  <form action='' method="POST">
+
+    <div>
+      <p>Update holdings for {{ coin.coin_symbol }} <input class="" type="number" step="0.000000000001"
+          name="amount" value="{{coin.amount}}" /></p>
+    </div>
+    <input class="btn btn-light" type="submit" value="Update" />
+
+  </form>
+</div>
+{% endblock %}
